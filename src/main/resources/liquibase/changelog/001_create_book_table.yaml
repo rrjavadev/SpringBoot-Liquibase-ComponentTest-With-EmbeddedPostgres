@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_book_table
+      author: roshini.revindranathan
+      dbms: PostgresQL
+      changes:
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: edition
+                  type: varchar(20)
+              - column:
+                  name: blurb
+                  type: varchar
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+        - createIndex:
+            indexName: index_title_on_book
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  type: varchar(100)

@@ -1,0 +1,3 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changelog/001_create_book_table.yaml
