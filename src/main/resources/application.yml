@@ -1,12 +1,12 @@
 spring:
   liquibase:
     change-log: classpath:liquibase/master.yaml
-    default-schema: catalogue
-    liquibase-schema: catalogue
+    default-schema: ${SCHEMA:catalogue}
+    liquibase-schema: ${SCHEMA:catalogue}
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=catalogue
+    url: jdbc:postgresql://localhost:${DB_PORT:5432}/postgres?currentSchema=${SCHEMA:catalogue}
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
 
