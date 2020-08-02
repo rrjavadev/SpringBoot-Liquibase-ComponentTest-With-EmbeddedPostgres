@@ -4,13 +4,19 @@ databaseChangeLog:
       author: roshini.revindranathan
       dbms: PostgresQL
       changes:
+        - createSequence:
+            incrementBy: 50
+            maxValue: 2147483647
+            minValue: 1
+            sequenceName: book_id_seq
+            startValue: 1
         - createTable:
             tableName: book
             columns:
               - column:
                   name: id
                   type: bigint
-                  autoIncrement: true
+                  defaultValueSequenceNext: book_id_seq
                   constraints:
                     primaryKey: true
                     nullable: false

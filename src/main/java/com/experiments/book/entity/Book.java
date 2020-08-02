@@ -1,5 +1,8 @@
 package com.experiments.book.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +18,15 @@ import static java.util.Objects.isNull;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GenericGenerator(name = "book_id_generator",
+            strategy = "com.experiments.book.entity.BookSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "book_id_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "50")
+            })
+    @GeneratedValue(generator = "book_id_generator", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "title", nullable = false)
