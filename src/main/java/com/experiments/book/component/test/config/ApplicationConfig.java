@@ -1,4 +1,4 @@
-package com.experiments.book.config;
+package com.experiments.book.component.test.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

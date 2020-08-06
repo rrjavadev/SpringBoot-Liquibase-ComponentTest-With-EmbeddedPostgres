@@ -2,7 +2,7 @@ package com.experiments.book.service;
 
 import com.experiments.book.dto.BookDto;
 import com.experiments.book.mapper.BookDtoMapper;
-import com.experiments.book.repository.CatalogueRepository;
+import com.experiments.book.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,15 +10,15 @@ import java.util.List;
 @Service
 public class CatalogueServiceImpl implements CatalogueService{
 
-    private  final CatalogueRepository catalogueRepository;
+    private  final BookRepository bookRepository;
     private final BookDtoMapper bookDtoMapper;
 
-    public CatalogueServiceImpl(CatalogueRepository catalogueRepository, BookDtoMapper bookDtoMapper){
-        this.catalogueRepository = catalogueRepository;
+    public CatalogueServiceImpl(BookRepository bookRepository, BookDtoMapper bookDtoMapper){
+        this.bookRepository = bookRepository;
         this.bookDtoMapper = bookDtoMapper;
     }
 
-    public List<BookDto> getBooks(String author){
-        return bookDtoMapper.toBookDtos(catalogueRepository.findByAuthorOrderByTitle(author));
+    public List<BookDto> getBooks(){
+        return bookDtoMapper.toBookDtos(bookRepository.findAll());
     }
 }

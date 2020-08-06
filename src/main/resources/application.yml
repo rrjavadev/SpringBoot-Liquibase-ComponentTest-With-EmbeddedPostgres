@@ -1,10 +1,11 @@
 spring:
   jpa:
-    show-sql: false
+    show-sql: true
   liquibase:
     change-log: classpath:liquibase/master.yaml
-    default-schema: ${SCHEMA:catalogue}
-    liquibase-schema: ${SCHEMA:catalogue}
+    default-schema: catalogue
+    liquibase-schema: catalogue
+
   datasource:
     username: postgres
     password: postgres

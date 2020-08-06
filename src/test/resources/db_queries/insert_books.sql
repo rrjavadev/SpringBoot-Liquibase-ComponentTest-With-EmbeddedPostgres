@@ -1,0 +1,1 @@
+insert into public.book values (1, 'title', 'author', 'edition', 'blurb', '2020-08-02 21:16:57.010825+01', '2020-08-02 21:16:57.010825+01');

@@ -1,4 +1,4 @@
-package com.experiments.book.config;
+package com.experiments.book.component.test.config;
 
 import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -28,8 +28,6 @@ public class ComponentTestConfig {
         if(Objects.isNull(embeddedPostgres )){
             embeddedPostgres = EmbeddedPostgres.builder().start();
         }
-        //Setting the port number at runtime.
-        System.setProperty("DB_PORT", embeddedPostgres.getPort() + "");
         return embeddedPostgres.getPostgresDatabase();
     }
 }
