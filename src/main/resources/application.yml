@@ -9,7 +9,7 @@ spring:
   datasource:
     username: postgres
     password: postgres
-    url: jdbc:postgresql://localhost:${DB_PORT:5432}/postgres?currentSchema=${SCHEMA:catalogue}
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=catalogue
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
 
