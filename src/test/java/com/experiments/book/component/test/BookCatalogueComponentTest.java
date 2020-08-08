@@ -44,7 +44,6 @@ public class BookCatalogueComponentTest {
 
     @BeforeEach
     public void setUp() {
-        executeDBQuery(dataSource, DELETE_BOOKS);
         executeDBQuery(dataSource, INSERT_BOOKS);
     }
 
@@ -59,5 +58,9 @@ public class BookCatalogueComponentTest {
 
         //Then
         assertEquals(expectedResponse, actualResponse.getBody(), JSONCompareMode.STRICT);
+    }
+
+    public void tearDown(){
+        executeDBQuery(dataSource, DELETE_BOOKS);
     }
 }
