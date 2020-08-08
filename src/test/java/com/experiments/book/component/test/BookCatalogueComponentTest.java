@@ -3,6 +3,7 @@ package com.experiments.book.component.test;
 import com.experiments.book.BookCatalogueApplication;
 import com.experiments.book.component.test.helpers.TestApiHelper;
 import org.json.JSONException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -60,6 +61,7 @@ public class BookCatalogueComponentTest {
         assertEquals(expectedResponse, actualResponse.getBody(), JSONCompareMode.STRICT);
     }
 
+    @AfterEach
     public void tearDown(){
         executeDBQuery(dataSource, DELETE_BOOKS);
     }
