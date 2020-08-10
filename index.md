@@ -22,11 +22,12 @@ The primary focus of this article is to help those poor souls who are in search 
 
 1. As my first step, I have created a SpringBoot application called BookCatalogueApplication that uses PostgreSQL database in the backend. I have used Liquibase to do the database migration. The application has a GET /books endpoint, which returns the list of books to the consumers.
 2. I have added the dependency to otj-pg-embedded so that I could use embedded postgres database in my component tests.
+
 ```
-<dependency>
-    <groupId>com.opentable.components</groupId>
-    <artifactId>otj-pg-embedded</artifactId>
-    <version>0.13.1</version>
-    <scope>test</scope>
-</dependency>
+                <dependency>
+                    <groupId>com.opentable.components</groupId>
+                    <artifactId>otj-pg-embedded</artifactId>
+                    <version>0.13.1</version>
+                    <scope>test</scope>
+                </dependency>
 ```
