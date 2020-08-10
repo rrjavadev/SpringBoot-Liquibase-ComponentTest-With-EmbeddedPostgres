@@ -21,7 +21,7 @@ The primary focus of this article is to help those poor souls who are in search 
 ### How this works?
 
 1. As my first step, I have created a SpringBoot application called BookCatalogueApplication that uses PostgreSQL database in the backend. I have used Liquibase to do the database migration. The application has a GET /books endpoint, which returns the list of books to the consumers.
-2. I have added the dependency to otj-pg-embedded so that I could use embedded postgres database in my component tests.
+2. I have added otj-pg-embedded dependency to pom.xml so that I could use embedded postgres database in my component tests.
 
 ```xml
                 <dependency>
