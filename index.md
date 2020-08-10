@@ -1,37 +1,12 @@
-## Welcome to GitHub Pages
+## Write component tests for SpringBoot application using Embdedded Postgres
 
-You can use the [editor on GitHub](https://github.com/roshinirevindranathan/SpringBoot_EmbeddedPostgres_Liquibase/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+I would like to share with you my experience on writing a component test for a Spring-boot application using embedded Postgres database. I am using Liquibase for database migration. A prior basic understanding of Spring Boot framework is expected from the reader.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# For this experiment, I am using:
+** Spring-boot 2.3.1 RELEASE
+** Liquibase for database migration
+** PostgreSQL database for the application code
+** [OpenTable embedded Postgres for the component test](https://github.com/opentable/otj-pg-embedded)
+** Junit 5
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/roshinirevindranathan/SpringBoot_EmbeddedPostgres_Liquibase/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+The primary focus of this article is to help those poor souls who are in search of a simple and useful article about writing component tests using embedded Postgres database that runs against Liquibase. I have used H2 database previously but wasn't very happy with the outcome since I had some unpleasant experiences of the tests passing, but the DB migration failing whilst running the migration scripts against a real database. The use of PostgreSQL Test container is another option. Although this is a great approach, sometimes you may be constrained to only use an in-memory option, in case your client/employer is using an operating system that is not very Docker friendly. Believe me, this is 2020 and there are companies who are still using Windows 7 operating system!
