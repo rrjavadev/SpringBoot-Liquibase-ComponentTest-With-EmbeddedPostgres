@@ -21,10 +21,11 @@ The primary focus of this article is to help those poor souls who are in search 
 * BookCatalogueComponentTest tests the GET /books endpoint and verifies the response body.
 <br>
 * BookCatalogueComponentTest injects the EmbeddedPostgres data-source at runtime. When the component test starts, the first step is to insert the test data in Embedded Postgres database. Because BookCatalogueComponentTest also connects to the same database, the GET /books endpoint returns the data that is inserted by the component test.
+<br/>
 ### How to setup the test?
 
-1. Firstly, I have created a SpringBoot application called BookCatalogueApplication that uses PostgreSQL database in the backend. I have used Liquibase to do the database migration. The application has a GET /books endpoint, which returns the list of books to the consumers.
-2. I have added otj-pg-embedded dependency to pom.xml so that I could use embedded postgres database in my component tests.
+* Firstly, I have created a SpringBoot application called BookCatalogueApplication that uses PostgreSQL database in the backend. I have used Liquibase to do the database migration. The application has a GET /books endpoint, which returns the list of books to the consumers.
+* I have added otj-pg-embedded dependency to pom.xml so that I could use embedded postgres database in my component tests.
 
 ```xml
     <dependency>
@@ -34,18 +35,20 @@ The primary focus of this article is to help those poor souls who are in search 
         <scope>test</scope>
     </dependency>
 ```
-3. I have add the following database configuration in the application code.
+* I have add the following database configuration in the application code.
 ![application database config](/images/book-catalogue-application-config.png)
 <br/>
 Please note the annotation  <b>@Profile("!test")</b>. The DataSource bean creation will be ignored if the profile is 'test'. I will take advantage of this by running the component test with 'test' profile. This will enable the application code to pick embedded postgres data-source at runtime.
-4. The next step is to add a ComponentTestConfig class. This is the place where we create an Embedded Postgres bean. 
+<br>
+* The next step is to add a ComponentTestConfig class. This is the place where we create an Embedded Postgres bean. 
 ![component test config](/images/component-test-config.png)
 
 The line of code EmbeddedPostgres.builder().start() simply starts embedded postgres database at a random port. <br/>
 Unlike H2, OpenTableEmbedded Postgres database can make the component tests slow, especially when there are a large number of tests to run. To speed up the tests, I have added the check to start the database only if the database is not started yet. This will start the database only once for the entire test suite.
-
-5. The next step is to create a component test class called BookCatalogueComponentTest.java <br/>
+<br>
+* The next step is to create a component test class called BookCatalogueComponentTest.java.
 This is a SpringBootTest with ActiveProfiles set to 'test'.  
+<br/>
 ```java
 @SpringBootTest(classes = BookCatalogueApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,7 +64,7 @@ The application is spun up at random ports. The component test can access the ap
 private int applicationPort;
 ```   
 
-I have injected the data-source in the component test class. This for loading the test test data. This is an optional thing to do and will be only needed if the database pre-population is necessary. 
+I have injected the data-source in the component test class. This is for loading the test data. This is an optional thing to do and will be only needed if the database pre-population is necessary. 
 ```java
 @Autowired
 @Qualifier("embeddedPostgresDataSource")
@@ -93,7 +96,7 @@ The test method is straight forward.
     }
 ```
 
-6. In the end, the component test calls a tearDown() method, that deletes all the book data that was previously inserted in the embedded postgres database.
+* In the end, the component test calls a tearDown() method, that deletes all the book data that was previously inserted in the embedded postgres database.
 This step is especially important if we only start the embedded postgres only once. This is to avoid any potential data conflicts if multiple test cases are run one after the other.
 ```java
     @AfterEach
