@@ -35,12 +35,12 @@ The primary focus of this article is to help those poor souls who are in search 
         <scope>test</scope>
     </dependency>
 ```
-* I have also add the following database configuration in the application code.
+* I have also added the following database configuration in the application code.<br/>
 ![application database config](/images/book-catalogue-application-config.png)
 <br/>
 Please note the annotation  <b>@Profile("!test")</b>. The DataSource bean creation will be ignored if the profile is 'test'. I will take advantage of this by running the component test with 'test' profile. This will enable the application code to pick embedded postgres data-source at runtime.
 <br>
-* The next step is to add a ComponentTestConfig class. This is the place where we create an Embedded Postgres bean. 
+* The next step is to add a ComponentTestConfig class. This is the place where we create an Embedded Postgres bean.<br/>
 ![component test config](/images/component-test-config.png)
 
 The line of code <b>EmbeddedPostgres.builder().start()</b> starts embedded postgres database at a random port. <br/>
