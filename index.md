@@ -45,10 +45,8 @@ Please note the annotation  <b>@Profile("!test")</b>. The DataSource bean creati
 
 The line of code EmbeddedPostgres.builder().start() simply starts embedded postgres database at a random port. <br/>
 Unlike H2, OpenTableEmbedded Postgres database can make the component tests slow, especially when there are a large number of tests to run. To speed up the tests, I have added the check to start the database only if the database is not started yet. This will start the database only once for the entire test suite.
-<br/>
 * The next step is to create a component test class called BookCatalogueComponentTest.java.
 This is a SpringBootTest with ActiveProfiles set to 'test'.  
-<br/>
 ```java
 @SpringBootTest(classes = BookCatalogueApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -56,7 +54,6 @@ This is a SpringBootTest with ActiveProfiles set to 'test'.
 @DirtiesContext
 public class BookCatalogueComponentTest {...}
 ``` 
-<br/>
 The application is spun up at random ports. The component test can access the application port by using the following lines of code. This will be useful when we call the GET /books endpoint.
 
 ```java
@@ -80,7 +77,6 @@ The test method is straight forward.
 * It reads the response JSON file as String. 
 * Then calls the API GET /books endpoint.
 * The response body is then compared with the expected response string and verifies the result.
-</br>
 
 ```java
     @Test
