@@ -1,4 +1,4 @@
-package com.experiments.book.component.test.config;
+package com.experiments.book.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 import javax.sql.DataSource;
 
 @Configuration
-public class ApplicationConfig {
+public class BookCatalogueApplicationConfig {
 
     @Bean
     @Profile("!test")
